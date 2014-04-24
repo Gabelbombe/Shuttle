@@ -1,3 +1,18 @@
 {
-    "opportunities": ""
+    "authentication": {
+        "user": "benodbc",
+        "pass": "3m0s"
+    },
+    "driver":   "FileMaker ODBC",
+    "server":   "192.168.50.8",
+    "database": "NMA2007_DB",
+    "layouts": {
+        "brands":        "BrandModel",
+        "clients":       "ClientModel",
+        "accounts":      "AccountModel",
+        "opportunities": "OpportunityModel",
+        "categories":    "CategoryModel",
+        "genres":        "GenreModel",
+        "placements":    "PlacementModel"
+    }
 }
