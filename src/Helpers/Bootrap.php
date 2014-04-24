@@ -4,13 +4,15 @@ Namespace Helpers
 {
     Class Bootstrap
     {
-        private $players = FALSE,
-                $utid    = FALSE;
+        private $utid    = FALSE,
+                $payload = [];
 
         public function __construct(array $payload = [])
         {
             // convert CLI opts to GET params if you're playing from the command line
             if (! $payload['type']) parse_str(implode("&", array_slice($payload['args'], 1)), $_GET);
+
+            print_r($_GET);
         }
 
         public function run()
