@@ -10,18 +10,44 @@ require APP_PATH . '/src/Helpers/LazyLoader.php';
 $lazyLoader = New \Helpers\LazyLoader(APP_PATH . '/src/');
 $lazyLoader->registerGenericNamespace('Helpers');
 
-/**
-$payload = [
-    'type' => (! isset($argv) ?: 0),
-    'args' => (! isset($argv) ? $_GET : $argv),
-];
-
-$bootstrap = New \Helpers\Bootstrap($payload);
-$bootstrap->run();
-*/
-
-
 $config = (object) $lazyLoader->config(0);
-//Test: $config = $lazyLoader->config(APP_PATH . '/src/config/generic');
 
-print_r($config->Mongo);
+/**
+ * -vvv
+ *
+ * \MongoLog::setLevel(\MongoLog::ALL);    // all log levels
+ * \MongoLog::setModule(\MongoLog::ALL);   // all parts of the driver
+ */
+
+$mongo = New MongoClient($config->Mongo->server);
+$mdb   = $mongo->{$config->Mongo->database};
+
+foreach ($mdb->getCollectionNames() AS $collection)
+{
+    echo $collection;
+}
+
+/*
+
+$this->m = new MongoClient('mongodb://' . $this->params['benApiMongo']);
+$this->db = $this->m->BenAPI;
+$this->collection = $this->db->Account;
+$document = array('AccountFlags' => array(
+    "MustChangePassword" => false,
+    "HasAcceptedWebsiteTerms" => true,
+    "HasClosedCookieLink" => false,
+),
+    "AccountId" => "CON99999999",
+    "Email" => "qatest@qatest.com",
+    "FirstName" => "QA",
+    "LastName" => "TEST",
+    "MI" => null,
+    "Role" => "4",
+    "Salt" => "22B",
+    "Status" => null,
+    "Title" => "Brand Integration",
+    "Username" => "default99999999",
+    "_id" => new MongoId('534d91bf087aa99c21b74abd'),
+);
+$this->collection->insert($document);
+*/
