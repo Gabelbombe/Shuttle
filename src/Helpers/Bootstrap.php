@@ -2,6 +2,8 @@
 
 Namespace Helpers
 {
+    USE \Helpers\Validate AS Validate;
+
     Class Bootstrap
     {
         private $utid    = FALSE,
@@ -12,7 +14,9 @@ Namespace Helpers
             // convert CLI opts to GET params if you're playing from the command line
             if (! $payload['type']) parse_str(implode("&", array_slice($payload['args'], 1)), $_GET);
 
-            print_r($_GET);
+            if (FALSE === ($this->payload = Validate::payload($_GET)))
+                Throw New \RuntimeException('Payload validation error: ' . Validate::getLogger());
+
         }
 
         public function run()

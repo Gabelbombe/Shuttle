@@ -14,8 +14,8 @@ Namespace Helpers
         public function registerNamespaces($namespace = false, $path = false)
         {
             $this->registerGenericNamespace($namespace, $path)
-                ->registerLibraryNamespace()
-                ->registerHelperNamespace();
+                 ->registerLibraryNamespace()
+                 ->registerHelperNamespace();
 
             return $this;
         }
@@ -66,6 +66,18 @@ Namespace Helpers
             $this->registerAutoloader($autoloader);
 
             return $this;
+        }
+
+        public function config($path = false)
+        {
+            $config = [];
+            foreach (glob(($path && file_exists($path) ? $path : ENV_FILE) . '/*.json') AS $file)
+            {
+                $name = ucfirst(preg_replace('/\\.[^.\\s]{3,4}$/', '', basename($file)));
+                $config[$name] = json_decode(file_get_contents($file));
+            }
+
+            return (! empty($config)) ? $config : FALSE;
         }
 
         protected function registerAutoloader($autoloader)
