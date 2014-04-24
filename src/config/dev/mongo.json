@@ -1,0 +1,6 @@
+{
+    "database":     "BenAPI",
+    "server":       "dev1.api.productplacement.corbis.pre:27017",
+    "options":      [],
+    "profiling":    true
+}
