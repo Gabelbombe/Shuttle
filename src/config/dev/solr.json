@@ -1,11 +1,15 @@
 {
-    "hostname":   "dev1.api.productplacement.corbis.pre",
-    "path":       "/solr/ben",
-    "port":       8080,
-    "response":   "json",
-    "list":     [
-        "http://dev1.api.productplacement.corbis.pre:8080/solr/ben",
-        "http://dev2.api.productplacement.corbis.pre:8080/solr/ben",
-        "http://dev3.api.productplacement.corbis.pre:8080/solr/ben"
-    ]
+    "endpoint": {
+        "development": {
+            "host": "dev1.api.productplacement.corbis.pre",
+            "port": 8080,
+            "path": "/solr/ben",
+            "list": [
+                "http://dev1.api.productplacement.corbis.pre:8080/solr/ben",
+                "http://dev2.api.productplacement.corbis.pre:8080/solr/ben",
+                "http://dev3.api.productplacement.corbis.pre:8080/solr/ben"
+            ]
+        }
+    }
 }
+

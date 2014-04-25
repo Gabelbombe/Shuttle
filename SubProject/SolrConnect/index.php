@@ -12,13 +12,16 @@ $lazyLoader = New \Helpers\LazyLoader(APP_PATH . '/src/');
 $lazyLoader->registerGenericNamespace('Helpers');
 $lazyLoader->registerGenericNamespace('Solr');
 
-$client = New Solarium\Client();
+$config = (object) $lazyLoader->config(0);
+
+
+$client = New Solarium\Client($config->Solr);
+
 
 print_r($client);
 
-die;
-$config = (object) $lazyLoader->config(0);
 
+die;
     $solr = New SolrClient([
         'hostname' => $config->Solr->hostname,
         'wt'       => $config->Solr->response,
