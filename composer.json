@@ -1,6 +1,6 @@
 {
       "require": {
-          "solarium/solarium": "2.4.0",
-            "guzzle/guzzle": "dev-master"
+          "solarium/solarium": "3.0.0",
+          "guzzle/guzzle": "dev-master"
       }
   }

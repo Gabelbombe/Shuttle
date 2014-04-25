@@ -10,6 +10,21 @@ require APP_PATH . '/src/Helpers/LazyLoader.php';
 $lazyLoader = New \Helpers\LazyLoader(APP_PATH . '/src/');
 $lazyLoader->registerGenericNamespace('Helpers');
 
+$config = array(
+    'endpoint' => array(
+        'localhost' => array(
+            'host' => '127.0.0.1', 'port' => '8983', 'path' => '/solr/'
+        )
+    )
+);
+
+// new Solarium Client object
+$client = New Solarium\Client($config);
+
+print_r($client);
+
+
+/*
 $payload =
     [
         'type' => (! isset($argv) ?: 0),
@@ -18,3 +33,4 @@ $payload =
 
 $bootstrap = New \Helpers\Bootstrap($payload);
 $bootstrap->run();
+*/

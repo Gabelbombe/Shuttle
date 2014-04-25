@@ -1,0 +1,40 @@
+/*
+ * Response
+ *
+ *   [
+ *       {
+ *           "id": "Opportunity_1",
+ *           "OpportunityId": "Opportunity_1",
+ *           "Title": "ZOOCHOSIS ",
+ *           "text": [
+ *              "ZOOCHOSIS ",
+ *              "Follows the story of a psychiatrist making sense of a world gone wild.  From a bride’s violent panic attack during her wedding reception, to an epic showdown between flash mob dancers and consumers - ever episode is a visit from the unexpected.  With cases big and small, Zoochosis is also about the minor lunacies in modern life - from dating, to parenthood, to the weirdness of old age.  Each patient tells a unique story, and further challenges the doctor’s sense of what’s normal.  "
+ *           ],
+ *           "Channel": "Digital",
+ *           "VehiclePower": "B",
+ *           "Type": "Web Series - Digital",
+ *           "Status": "Ongoing",
+ *           "Rating": "Teen and Older Audience",
+ *           "Genre": "Comedy",
+ *           "Synopsis": "Follows the story of a psychiatrist making sense of a world gone wild.  From a bride’s violent panic attack during her wedding reception, to an epic showdown between flash mob dancers and consumers - ever episode is a visit from the unexpected.  With cases big and small, Zoochosis is also about the minor lunacies in modern life - from dating, to parenthood, to the weirdness of old age.  Each patient tells a unique story, and further challenges the doctor’s sense of what’s normal.  ",
+ *           "TargetSegment_AgeRange_Start": 18,
+ *           "TargetSegment_AgeRange_End": 54,
+ *           "TargetSegment_IncomeRange_Start": 0,
+ *           "TargetSegment_IncomeRange_End": 100,
+ *           "TargetSegment_Ethnicity": [
+ *              "ALL"
+ *           ],
+ *           "TargetSegment_Gender": [
+ *              "Male"
+ *           ],
+ *           "TargetSegment_FamilyOriented": false,
+ *           "Release_Ongoing": true,
+ *           "SensitiveContent": [
+ *              "Sexuality",
+ *              "Explicit Language",
+ *              "Violence"
+ *           ],
+ *           "_version_": 1454095188160938000
+ *       }
+ *   ]
+ */
