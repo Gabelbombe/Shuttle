@@ -1,9 +1,11 @@
 {
-    "endpoint": {
-        "localhost": {
-            "host": "127.0.0.1",
-            "port": 8983,
-            "path": "/solr/"
-        }
-    }
+    "hostname":   "dev1.api.productplacement.corbis.pre",
+    "path":       "/solr/ben",
+    "port":       8080,
+    "response":   "json",
+    "list":     [
+        "http://dev1.api.productplacement.corbis.pre:8080/solr/ben",
+        "http://dev2.api.productplacement.corbis.pre:8080/solr/ben",
+        "http://dev3.api.productplacement.corbis.pre:8080/solr/ben"
+    ]
 }
