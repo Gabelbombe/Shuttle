@@ -10,62 +10,64 @@ require APP_PATH . '/vendor/autoload.php';
 
 $lazyLoader = New \Helpers\LazyLoader(APP_PATH . '/src/');
 $lazyLoader->registerGenericNamespace('Helpers');
-$lazyLoader->registerGenericNamespace('Solr');
+//$lazyLoader->registerGenericNamespace('Solr');
 
 $config = (object) $lazyLoader->config(0);
-
-
-$client = New Solarium\Client($config->Solr);
-
-
-print_r($client);
-
-
-die;
-    $solr = New SolrClient([
-        'hostname' => $config->Solr->hostname,
-        'wt'       => $config->Solr->response,
-        'port'     => $config->Solr->port,
-        'path'     => $config->Solr->path,
-    ]);
 
 /**
  * Test Query
  */
+$client = New Solarium\Client($config->Solr);
+$query  = $client->createSelect();
 
-$query = New SolrQuery('*');             // ->setRows(50)
-$response = $solr->query($query->setStart(0)->setRows(1)->addField('*'));
+          $query->setQuery('*:*')
+                ->setStart(2)
+                ->setRows(1);
 
-/**
- * See: response.nfo
- *
- * print_r(json_encode($response->getResponse() ['response']['docs']));
+$response = $client->execute($query)->getData() ['response']['docs']; // call expansion v5.4+
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+header('Content-Type: text/html');
+
+/*
+ * modify response for insert
  */
+$response[0] = ([
+        'id'            => 'Opportunity_Test',
+        'OpportunityId' => 'Opportunity_Test',
+        'text' => [
+            strtoupper('Lorem Ipsum'),
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel risus quam. In sed augue tristique, consectetur purus sed, sagittis leo. ',
 
-
-/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-
-header('Content-Type: text/plain');
-$records = json_encode($response->getResponse() ['response']['docs'], JSON_PRETTY_PRINT);
-$records = json_decode($records, 1);
-
-
-$solr = New Solr\Client();
-$solr->setRecords($records)->assemble();
-
-
-//print_r($solrInputDocument); die; // broken
-die;
-/** @var  $updateResponse */
-
-print_r($docs[0]->toArray());
-//$updateResponse = $solr->addDocuments($docsArray);
-//    print_r($updateResponse->getResponse());
-die;
-
-
-$query    = New SolrQuery('*');
-//$response = $solr->query($query->setStart(0)->setRows(1)->addField('id'));
+        ],
+        'Title'         => strtoupper('Lorem Ipsum')
+    ] + $response[0]
+);
 
 print_r($response);
+
+$update = $client->createUpdate();
+$insert  = [];
+
+foreach ($response AS $docId => $array)
+{
+    $insert[$docId] = $update->createDocument();
+    foreach($array AS $name => $part)
+    {
+        if('_version_' !== $name) $insert[$docId]->$name = $part;
+    }
+}
+
+print_r($insert);
+
+$update->addDocuments($insert)
+       ->addCommit();
+
+// this executes the query and returns the result
+$result = $client->update($update);
+
+echo "Query status: {$result->getStatus()}";
+echo "Query time:   {$result->getQueryTime()}";
+die;
